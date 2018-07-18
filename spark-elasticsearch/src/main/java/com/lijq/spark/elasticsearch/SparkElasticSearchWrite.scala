@@ -6,13 +6,9 @@ import org.apache.spark.{SparkConf, SparkContext}
 import org.elasticsearch.spark._
 
 /**
-  * 向ElasticSearch中写入数据
-  *
   * @author Lijq
   */
 object SparkElasticSearchWrite {
-
-
   def main(args: Array[String]): Unit = {
 
     val conf = new SparkConf()
