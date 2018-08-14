@@ -44,7 +44,6 @@
                 <version>${spark.version}</version>
             </dependency>
 
-
             <!-- Kafka -->
             <dependency>
                 <groupId>org.apache.spark</groupId>

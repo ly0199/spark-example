@@ -6,13 +6,15 @@ import org.apache.spark.{SparkConf, SparkContext}
 import org.elasticsearch.spark._
 
 /**
+  * 向ElasticSearch中写入Map类型数据
+  *
   * @author Lijq
   */
 object SparkElasticSearchWrite {
   def main(args: Array[String]): Unit = {
 
     val conf = new SparkConf()
-      .setAppName("SparkElasticSearchReader")
+      .setAppName("SparkElasticSearchWrite")
       .setMaster("local[*]")
       .set("es.index.auto.create", "true") // 允许自动创建
       .set("es.resource.write", "lijinquan/{media_type}") // 默认值es.resource, es.resource.write用于写入
@@ -28,8 +30,9 @@ object SparkElasticSearchWrite {
     val sc = new SparkContext(conf)
 
     val user1 = Map("media_type" -> "user", "id" -> 1, "name" -> ("name" + 1), "time" -> new Date())
+    val user2 = Map("media_type" -> "user", "id" -> 1222, "name" -> "金x泉", "time" -> new Date())
     val book1 = Map("media_type" -> "book", "id" -> 1, "name" -> ("book" + 1), "time" -> new Date())
 
-    sc.makeRDD(Seq(user1, book1)).saveToEs("lijinquan/{media_type}")
+    sc.makeRDD(Seq(user2, book1)).saveToEs("lijinquan/{media_type}")
   }
 }
